@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FraudDetection.Api", "src\FraudDetection.Api\FraudDetection.Api.csproj", "{89E047E4-C60B-49CB-9395-E5F6F74AAAD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudDetection", "src\FraudDetection\FraudDetection.csproj", "{A79041BD-2E97-4432-9F58-926DC5CA4881}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FraudDetection", "src\FraudDetection\FraudDetection.csproj", "{A79041BD-2E97-4432-9F58-926DC5CA4881}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudDetection.Api.UnitTests", "tests\FraudDetection.Api.UnitTests\FraudDetection.Api.UnitTests.csproj", "{22A7ED96-454E-4624-8FEA-AD9155AB4DD5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A7D1BDB9-8548-4221-BD54-0B4109247E59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +25,16 @@ Global
 		{A79041BD-2E97-4432-9F58-926DC5CA4881}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A79041BD-2E97-4432-9F58-926DC5CA4881}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A79041BD-2E97-4432-9F58-926DC5CA4881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22A7ED96-454E-4624-8FEA-AD9155AB4DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22A7ED96-454E-4624-8FEA-AD9155AB4DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22A7ED96-454E-4624-8FEA-AD9155AB4DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22A7ED96-454E-4624-8FEA-AD9155AB4DD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{22A7ED96-454E-4624-8FEA-AD9155AB4DD5} = {A7D1BDB9-8548-4221-BD54-0B4109247E59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2357B9C5-7D63-44D3-BCB3-F6973BF75CA7}

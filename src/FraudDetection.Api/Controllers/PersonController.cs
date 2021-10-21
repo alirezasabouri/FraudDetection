@@ -13,7 +13,7 @@ namespace FraudDetection.Api.Controllers
     [Route("[controller]")]
     public class PersonController : ControllerBase
     {
-        private readonly ILogger<PersonController> _logger;
+        private readonly ILogger _logger;
         private readonly IPersonUsecase _personUsecase;
 
         public PersonController(ILogger<PersonController> logger, IPersonUsecase personUsecase)
@@ -25,6 +25,9 @@ namespace FraudDetection.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]PersonCreateDto dto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var person = dto.ToModel();
             var createResult = await _personUsecase.CreateAsync(person);
 
