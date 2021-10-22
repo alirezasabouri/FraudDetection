@@ -1,7 +1,7 @@
 ﻿using FraudDetection.Api.Dto;
 using FraudDetection.Contracts.Usecases;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace FraudDetection.Api.Controllers
         private readonly ILogger _logger;
         private readonly IPersonUsecase _personUsecase;
 
-        public PersonController(ILogger<PersonController> logger, IPersonUsecase personUsecase)
+        public PersonController(ILogger logger, IPersonUsecase personUsecase)
         {
             _logger = logger;
             _personUsecase = personUsecase;
@@ -35,7 +35,7 @@ namespace FraudDetection.Api.Controllers
                 return Ok();
             else
             {
-                _logger.LogError(createResult.Error, "Error creating new person");
+                _logger.Error(createResult.Error, "Error creating new person");
                 return StatusCode(500, "Error on creating requested Person");
             }
         }

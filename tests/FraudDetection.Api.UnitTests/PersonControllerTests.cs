@@ -7,8 +7,8 @@ using FraudDetection.Contracts.Usecases;
 using FraudDetection.Misc;
 using FraudDetection.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Moq;
+using Serilog;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -67,6 +67,18 @@ namespace FraudDetection.Api.UnitTests
 
             var objectResult = result.Should().BeOfType<ObjectResult>().Which;
             objectResult.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
+        }
+
+        [Fact]
+        public async Task GivenCreatePersonEndpoint_WhenUsecaseFails_MustLogTheError()
+        {
+            var exception = _fixture.Create<Exception>();
+            _personUsecaseMock.Setup(o => o.CreateAsync(It.IsAny<Person>())).ReturnsAsync(Result.Fail(exception));
+            var createDto = _fixture.Create<PersonCreateDto>();
+
+            IActionResult result = await _controller.Create(createDto);
+
+            _loggerMock.Verify(o => o.Error(exception, It.IsAny<string>()));
         }
     }
 }

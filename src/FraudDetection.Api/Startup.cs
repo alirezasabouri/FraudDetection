@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
+using Serilog.Sinks.SystemConsole.Themes;
 
 namespace FraudDetection.Api
 {
@@ -29,6 +31,8 @@ namespace FraudDetection.Api
                });
 
             services.AddAppDependencies();
+
+            ConfigureLogger(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,5 +58,20 @@ namespace FraudDetection.Api
                 endpoints.MapControllers();
             });
         }
+
+        private void ConfigureLogger(IServiceCollection services)
+        {
+            var configuration = new LoggerConfiguration()
+                .MinimumLevel.Is(Serilog.Events.LogEventLevel.Information)
+                .WriteTo.Console(
+                    outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message,-30:lj} {Properties:j}{NewLine}{Exception}",
+                    theme: AnsiConsoleTheme.Literate)
+                .Enrich.FromLogContext();
+
+            var _logger = configuration.CreateLogger();
+
+            services.AddSingleton<ILogger>(_logger);
+        }
+
     }
 }

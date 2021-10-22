@@ -15,7 +15,6 @@ namespace FraudDetection.Api.Dto
         [Required]
         public string LastName { get; set; }
 
-        [Range(typeof(DateTime), "1/1/1900", "1/1/2021", ErrorMessage = "BirthDate is out of Range")]
         public DateTime? DateOfBirth { get; set; }
 
         public string IdentificationNumber { get; set; }
