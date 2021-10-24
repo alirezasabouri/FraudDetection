@@ -22,47 +22,28 @@ namespace FraudDetection.Usecases
         }
 
         /// <inheritdoc />
-        public async Task<Result<float>> FindSimilarityRankAsync(Person person1, Person person2)
+        public async Task<Result<decimal>> FindSimilarityRankAsync(Person person1, Person person2)
         {
             var ruleEngineConfigs = await _ruleEngineConfigurationRepository.GetRulesConfig();
             var ruleEngineConfigsDictionary = ruleEngineConfigs.ToDictionary(k => k.RuleType);
 
-            float result = 0;
+            decimal result = 0;
             var ruleset = _personComparisonRuleEngineFactory.GetRuleSet();
 
-            foreach (var ruleType in ruleset.Keys)
+            foreach (var rule in ruleset)
             {
-                var ruleIsApplicable = ruleset[ruleType].IsTrue(new PersonComparisonRuleInput(person1, person2));
-                if (ruleIsApplicable)
-                    result += ruleEngineConfigsDictionary[ruleType].Weight;
-                if (result >= 1)
+                var ruleExecutionResult = await rule.ExecuteAsync(new PersonComparisonRuleInput(person1, person2, result), ruleEngineConfigsDictionary);
+
+                if (ruleExecutionResult == null)
+                    continue;
+
+                result = ruleExecutionResult.NewRank;
+
+                if (ruleExecutionResult.BreakCircuit)
                     break;
             }
 
-            return Result.Success(result);
-
-            //if (!string.IsNullOrEmpty(person1.IdentificationNumber) &&
-            //    !string.IsNullOrEmpty(person2.IdentificationNumber) &&
-            //    person1.IdentificationNumber.ToLower() == person2.IdentificationNumber.ToLower())
-            //{
-            //    result = 1;
-            //    return Task.FromResult(Result.Success(result));
-            //}
-
-            //if (person1.LastName.ToLower() == person2.LastName.ToLower())
-            //    result += 0.4f;
-
-            //if (person1.FirstName.ToLower() == person2.FirstName.ToLower())
-            //    result += 0.2f;
-            //else if (_nameSimilarityCheck.AreSimilar(person1.FirstName, person2.FirstName))
-            //    result += 0.15f;
-
-            //if (person1.DateOfBirth.HasValue &&
-            //    person2.DateOfBirth.HasValue &&
-            //    person1.DateOfBirth.Value.Date == person2.DateOfBirth.Value.Date)
-            //    result += 0.4f;
-
-            //return Task.FromResult(Result.Success(result));
+            return Result.Success(result > 1 ? 1 : result);
         }
     }
 }

@@ -5,6 +5,6 @@ namespace FraudDetection.Contracts.Services
 {
     public interface IPersonComparisonRuleEngineFactory
     {
-        IReadOnlyDictionary<PersonComparisonRuleType, IPersonComparisonRule> GetRuleSet();
+        ISet<IPersonComparisonRule> GetRuleSet();
     }
 }

@@ -5,26 +5,22 @@ namespace FraudDetection.Services.RuleEngine
 {
     public class PersonComparisonRuleEngineFactory : IPersonComparisonRuleEngineFactory
     {
-        private Dictionary<PersonComparisonRuleType, IPersonComparisonRule> _rulesetDictionary;
+        private HashSet<IPersonComparisonRule> _ruleset;
 
         public PersonComparisonRuleEngineFactory()
         {
-            _rulesetDictionary = new Dictionary<PersonComparisonRuleType, IPersonComparisonRule>();
+            _ruleset = new HashSet<IPersonComparisonRule>();
         }
 
-        public PersonComparisonRuleEngineFactory Configure(PersonComparisonRuleType ruleType, IPersonComparisonRule rule)
+        public PersonComparisonRuleEngineFactory AddRule(IPersonComparisonRule rule)
         {
-            if (_rulesetDictionary.ContainsKey(ruleType))
-                _rulesetDictionary[ruleType] = rule;
-            else
-                _rulesetDictionary.Add(ruleType, rule);
-
+            _ruleset.Add(rule);
             return this;
         }
 
-        public IReadOnlyDictionary<PersonComparisonRuleType, IPersonComparisonRule> GetRuleSet()
+        public ISet<IPersonComparisonRule> GetRuleSet()
         {
-            return _rulesetDictionary;
+            return _ruleset;
         }
     }
 

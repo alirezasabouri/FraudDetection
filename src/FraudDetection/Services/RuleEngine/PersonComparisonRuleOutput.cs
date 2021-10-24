@@ -4,7 +4,7 @@ namespace FraudDetection.Services.RuleEngine
 {
     public class PersonComparisonRuleOutput
     {
-        public float NewRank { get; set; }
+        public decimal NewRank { get; set; }
         public bool BreakCircuit { get; set; }
     }
 

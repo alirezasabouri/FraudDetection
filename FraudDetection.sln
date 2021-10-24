@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FraudDetection.Api", "src\F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FraudDetection", "src\FraudDetection\FraudDetection.csproj", "{A79041BD-2E97-4432-9F58-926DC5CA4881}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudDetection.Api.UnitTests", "tests\FraudDetection.Api.UnitTests\FraudDetection.Api.UnitTests.csproj", "{22A7ED96-454E-4624-8FEA-AD9155AB4DD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FraudDetection.Api.UnitTests", "tests\FraudDetection.Api.UnitTests\FraudDetection.Api.UnitTests.csproj", "{22A7ED96-454E-4624-8FEA-AD9155AB4DD5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A7D1BDB9-8548-4221-BD54-0B4109247E59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudDetection.Adapter.Database", "src\FraudDetection.Adapter.Database\FraudDetection.Adapter.Database.csproj", "{A46663CC-BF54-4086-A18B-8EACDAB0B46E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{22A7ED96-454E-4624-8FEA-AD9155AB4DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22A7ED96-454E-4624-8FEA-AD9155AB4DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22A7ED96-454E-4624-8FEA-AD9155AB4DD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A46663CC-BF54-4086-A18B-8EACDAB0B46E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46663CC-BF54-4086-A18B-8EACDAB0B46E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A46663CC-BF54-4086-A18B-8EACDAB0B46E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A46663CC-BF54-4086-A18B-8EACDAB0B46E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

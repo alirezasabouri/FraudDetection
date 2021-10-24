@@ -20,11 +20,11 @@ namespace FraudDetection.Api
 
             var ruleEngineDefaultFactory = new PersonComparisonRuleEngineFactory();
             ruleEngineDefaultFactory
-                .Configure(PersonComparisonRuleType.FirstNamesAreEqual, new FirstNamesAreEqualRule())
-                .Configure(PersonComparisonRuleType.FirstNamesAreSimilar, new FirstNamesAreSimilarRule(serviceProvicer.GetService<INameSimilarityCheck>()))
-                .Configure(PersonComparisonRuleType.LastNamesAreEqual, new LastNamesAreEqualRule())
-                .Configure(PersonComparisonRuleType.IdentificationNumbersAreEqual, new IdentificationNumbersAreEqualRule())
-                .Configure(PersonComparisonRuleType.DatesOfBirthAreEqual, new BirthDatesAreEqualRule());
+                .AddRule(new FirstNamesAreEqualRule())
+                .AddRule(new FirstNamesAreSimilarRule(serviceProvicer.GetService<INameSimilarityCheck>()))
+                .AddRule(new LastNamesAreEqualRule())
+                .AddRule(new IdentificationNumbersAreEqualRule())
+                .AddRule(new BirthDatesAreEqualRule());
             services.AddSingleton<IPersonComparisonRuleEngineFactory>(ruleEngineDefaultFactory);
 
             return services;

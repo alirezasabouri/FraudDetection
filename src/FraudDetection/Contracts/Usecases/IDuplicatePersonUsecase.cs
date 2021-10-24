@@ -10,6 +10,6 @@ namespace FraudDetection.Contracts.Usecases
         /// Compare two provided persons for smiliarities and return matching rank
         /// </summary>
         /// <returns>Matching rank expressed in percentage 0.0 to 1.0</returns>
-        Task<Result<float>> FindSimilarityRankAsync(Person person1, Person person2);
+        Task<Result<decimal>> FindSimilarityRankAsync(Person person1, Person person2);
     }
 }

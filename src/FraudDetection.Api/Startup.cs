@@ -1,3 +1,4 @@
+using FraudDetection.Adapter.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,7 @@ namespace FraudDetection.Api
                });
 
             services.AddAppDependencies();
+            services.RegisterDatabaseAdapter();
 
             ConfigureLogger(services);
         }

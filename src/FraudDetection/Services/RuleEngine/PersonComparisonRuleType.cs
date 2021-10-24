@@ -6,7 +6,6 @@
         FirstNamesAreEqual = 2,
         FirstNamesAreSimilar = 3,
         LastNamesAreEqual = 4,
-        DatesOfBirthAreEqual = 5,
-        DatesOfBirthAreBothSetButNotEqual = 6,
+        DatesOfBirthAreEqual = 5
     }
 }
