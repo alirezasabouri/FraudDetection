@@ -1,4 +1,5 @@
 using FraudDetection.Adapter.Database;
+using FraudDetection.Misc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,8 +32,10 @@ namespace FraudDetection.Api
                    c.CustomSchemaIds(s => s.FullName);
                });
 
+            var settings = CreateSettingsFromConfiguration();
+
             services.AddAppDependencies();
-            services.RegisterDatabaseAdapter();
+            services.RegisterDatabaseAdapter(settings.Database);
 
             ConfigureLogger(services);
         }
@@ -73,6 +76,19 @@ namespace FraudDetection.Api
             var _logger = configuration.CreateLogger();
 
             services.AddSingleton<ILogger>(_logger);
+        }
+
+        private Settings CreateSettingsFromConfiguration()
+        {
+            var settings = new Settings();
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+            var config = builder.Build();
+
+            config.Bind(settings);
+
+            return settings;
         }
 
     }
