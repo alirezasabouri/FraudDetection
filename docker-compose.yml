@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  mysql-dev:
+    build:
+      context: database
+      dockerfile: mysql.dockerfile
+    image: mysql:5.7.12
+    container_name: frauddetection
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: FraudDetection
+      MYSQL_USER: developer
+      MYSQL_PASSWORD: password
+    volumes:
+      - './database/FraudDetection/:/database:ro'
+    ports:
+      - 3306:3306
