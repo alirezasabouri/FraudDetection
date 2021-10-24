@@ -37,7 +37,7 @@ namespace FraudDetection.Api.UnitTests
         public async Task GivenCreatePersonEndpoint_WhenCreateAValidPerson_MustResultInHttpOk()
         {
             _personUsecaseMock.Setup(o => o.CreateAsync(It.IsAny<Person>())).ReturnsAsync(Result.Success());
-            var createDto = _fixture.Create<PersonCreateDto>();
+            var createDto = _fixture.Create<PersonInputDto>();
 
             IActionResult result = await _controller.Create(createDto);
 
@@ -49,7 +49,7 @@ namespace FraudDetection.Api.UnitTests
         public async Task GivenCreatePersonEndpoint_WhenModelValidationNotPass_MustReturnBadRequest()
         {
             _personUsecaseMock.Setup(o => o.CreateAsync(It.IsAny<Person>())).ReturnsAsync(Result.Success());
-            var createDto = _fixture.Create<PersonCreateDto>();
+            var createDto = _fixture.Create<PersonInputDto>();
             _controller.ModelState.AddModelError("inputfield", "some validation error");
 
             IActionResult result = await _controller.Create(createDto);
@@ -61,7 +61,7 @@ namespace FraudDetection.Api.UnitTests
         public async Task GivenCreatePersonEndpoint_WhenUsecaseFails_MustReturnServerError()
         {
             _personUsecaseMock.Setup(o => o.CreateAsync(It.IsAny<Person>())).ReturnsAsync(Result.Fail(new Exception()));
-            var createDto = _fixture.Create<PersonCreateDto>();
+            var createDto = _fixture.Create<PersonInputDto>();
 
             IActionResult result = await _controller.Create(createDto);
 
@@ -74,7 +74,7 @@ namespace FraudDetection.Api.UnitTests
         {
             var exception = _fixture.Create<Exception>();
             _personUsecaseMock.Setup(o => o.CreateAsync(It.IsAny<Person>())).ReturnsAsync(Result.Fail(exception));
-            var createDto = _fixture.Create<PersonCreateDto>();
+            var createDto = _fixture.Create<PersonInputDto>();
 
             IActionResult result = await _controller.Create(createDto);
 

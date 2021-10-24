@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FraudDetection.Api.Dto
 {
-    public class PersonCreateDto
+    public class PersonInputDto
     {
         [Required]
         public string FirstName { get; set; }
