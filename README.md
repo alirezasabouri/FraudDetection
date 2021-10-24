@@ -13,6 +13,7 @@ Business requirements are being implemented as a set of **Usecases** that  relie
 **Database**
 <br/>
 MySql is database of choice to achieve persisting functionality for this project. Accordingly, we have a `Database Adapter` that provides us implementation logic for all database repositories, powered by Dapper.
+[Flyway](https://flywaydb.org/) is also employed to help with running migration/setup scripts on the database.
 
 **Docker**
 <br/>
