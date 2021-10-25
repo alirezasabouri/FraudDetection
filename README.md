@@ -44,5 +44,21 @@ A set of pre-defined rules have been prepared to cover current requirements of t
 
 Applicable rules are configurable by calling `PersonComparisonRuleEngineFactory.AddRule` method, default registration could be checked out [here](src/FraudDetection.Api/AppDependenciesRegistrar.cs#L22).
 
+<br/>
+<br/>
 
+## Future Development (a.k.a TODO)
+Due to time constraints and project budget, some of the enhancements and improvements left incomplete, here is a short list:
+
+- Not all similarity cases for FirstName are covered, this is the current situation:
+  - Only one syllabus initials are covered.
+  - Typos are covered based on `levenshtein difference` method
+  - There is no coverage for `diminutive` names, I don't know any algorithm at this time that could make such comparison but I can think of a dictionary which can cover all diminutives for well-known first names
+  
+  <br/>
+- No API unit tests for `/similar` endpoint, the idea of how these tests should implemented has been demonstrated within `PersonControllerTests`, and it's going to be quite similar also for the other endpoints
+
+- `RuleEngineConfigurationsRepository` is a POC and doesn't fetch configs from an actual database, but it proves how the final product would look like.
+
+- There is no test coverage for the Database adapter implementation
 
